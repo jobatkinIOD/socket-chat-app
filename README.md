@@ -16,3 +16,7 @@ To run the application, just clone the repository then run it locally:
 1. In a terminal : `npm install`
 2. `node index.js`
 3. Open http://localhost:3000/ in several browser windows and start chatting!
+
+### Docker
+
+You can also pull the docker image from jobatkiniod/socket-chat-app:latest and run on your server on port 80:3000
