@@ -21,7 +21,7 @@
     </style>
   </head>
   <body>
-    <h2>~ Socket Chat Application ~ <span id="userCount"></span></h2>
+    <h2>~ Jo's Socket Chat Application ~ <span id="userCount"></span></h2>
 
     <ul id="messages"></ul>
 
@@ -44,7 +44,7 @@
 
         window.onload = () => socket.emit('new user')
 
-        //updates the total count of users in the chat
+        // updates the total count of users in the chat
         function updateUserCount(msg) {
             console.log(msg)
             if (msg.totalUsers)
@@ -53,7 +53,7 @@
             }
         }
 
-        //adds a new chat msg to the <ul> with a CSS class to allow different colours/styling
+        // adds a new chat msg to the <ul> with a CSS class to allow different colours/styling
         function printMsg(msg, msgClass) { 
             let item = document.createElement('li');
             item.textContent = (msg.nickname) ? msg.nickname + ': ' + msg.text : msg.text;
@@ -62,7 +62,7 @@
             window.scrollTo(0, document.body.scrollHeight);            
         }
 
-        //when the chat form is submitted, get the value of the text input and send it back to the server
+        // when the chat form is submitted, get the value of the text input and send it back to the server
         chatForm.addEventListener('submit', function(e) {
             e.preventDefault();
             if (chatMessage.value) {
@@ -71,7 +71,7 @@
             }
         });
 
-        //when the choose a nickname form is submitted, get the value of the text input and send it back to the server
+        // when the choose a nickname form is submitted, get the value of the text input and send it back to the server
         nameForm.addEventListener('submit', function(e) {
             e.preventDefault();
             if (nickname.value) {
@@ -81,12 +81,12 @@
             }
         });     
         
-        //when someone presses a key in the chat message input, send their name in an event back to the server
+        // when someone presses a key in the chat message input, send their name in an event back to the server
         chatMessage.addEventListener('keydown', function(e) {
             socket.emit('typing', nickname.value)
         })
 
-        //custom events that this socket listens for
+        // custom events that this socket listens for
         socket.on('new user', (msg) => { updateUserCount(msg); printMsg(msg, 'newUser') })
         socket.on('disconnected', (msg) => { updateUserCount(msg); printMsg(msg, 'userDisconnected') })
         socket.on('chat message', (msg) => printMsg(msg, 'chatMsg'))
